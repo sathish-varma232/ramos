@@ -1,9 +1,13 @@
  # yum update -y 
 Set Repository # yum age # install epel-release -y 
+
 Install Maria DB Packyum install mariadb-server -y 
 Starting & enabling mariadb-server # systemctl start mariadb # systemctl enable mariadb 
 RUN mysql secure installation script. # mysql_secure_installation NOTE: Set db oot password as same as you set in the variable above (DATABASE_PASS='admin123') 
 Set DB to be accessible from remote machines # sed -i 's/^127.0.0.1/0.0.0.0/' /etc/my.cnf 
+
+indendation
+
 Set DB name and users. 
 # mysql -u root -p"$DATABASE_PASS" -e "create database accounts" # mysql -u root -p"$DATABASE_PASS" -e "grant all privileges on accounts.* TO 'admin'@'app01' identified by 'admin123' " # mysql -u root -p"$DATABASE_PASS" accounts < /vprofile-vm-data/src/main/resources/db_backup.sql 
 # mysql -u root -p"$DATABASE_PASS" -e "FLUSH PRIVILEGES" 
